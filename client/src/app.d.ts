@@ -4,6 +4,10 @@ declare global {
   interface Window {
     SpeechRecognition?: new () => SpeechRecognition
     webkitSpeechRecognition?: new () => SpeechRecognition
+    __APP_CONFIG__?: {
+      VITE_COMPANY_NAME?: string
+      VITE_API_BASE_URL?: string
+    }
   }
 
   interface SpeechRecognition extends EventTarget {

@@ -2,6 +2,7 @@
   import { onMount, tick } from 'svelte'
   import { get } from 'svelte/store'
   import { browser } from './lib/browser'
+  import { apiBaseUrl, companyName } from './lib/config'
   import { getRecognitionLocale, locale, t } from './lib/i18n'
   import { deriveChatTitle } from './lib/chat/title'
   import { toApiMessages } from './lib/chat/messages'
@@ -24,7 +25,7 @@
   let isRecording = false
   let threadElement: HTMLDivElement | null = null
 
-  const company = import.meta.env.VITE_COMPANY_NAME ?? 'Perfect_03'
+  const company = companyName
   const SpeechRecognitionApi = browser
     ? ((window.SpeechRecognition || window.webkitSpeechRecognition) as
         | SpeechRecognitionConstructor
@@ -176,7 +177,7 @@
     await scrollThreadToBottom()
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL ?? ''}/api/chat`, {
+      const response = await fetch(`${apiBaseUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

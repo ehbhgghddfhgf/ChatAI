@@ -15,5 +15,7 @@ RUN npm run build --workspace client
 FROM nginx:1.27-alpine
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/client/dist /usr/share/nginx/html
+COPY client/docker-entrypoint-generate-env.sh /docker-entrypoint.d/40-generate-env.sh
+RUN chmod +x /docker-entrypoint.d/40-generate-env.sh
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
