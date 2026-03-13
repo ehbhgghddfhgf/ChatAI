@@ -1,0 +1,21 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3-flash-preview}
+      VITE_COMPANY_NAME: ${VITE_COMPANY_NAME:Perfect_03}
+      SERVER_PORT: 3001
+    ports:
+      - "3001:3001"
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    depends_on:
+      - server
+    ports:
+      - "8080:80"
