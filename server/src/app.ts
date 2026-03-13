@@ -13,7 +13,7 @@ export function createApp() {
     origin: [
       'http://localhost:5173',
       process.env.CLIENT_URL
-    ]
+    ].filter(Boolean)
   }));
   app.use(express.json({ limit: "1mb" }));
 
