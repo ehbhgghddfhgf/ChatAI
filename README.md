@@ -32,3 +32,5 @@ docker compose up --build
 - `GEMINI_MODEL` - модель, по умолчанию `gemini-3-flash-preview`
 - `SERVER_PORT` - порт Express в локальной разработке
 - `CLIENT_PORT` - порт Vite в локальной разработке
+- `CLIENT_URL` - ссылка на deploy Фронта (для добавления в разрешенные домены API)
+- `VITE_API_BASE_URL` - ссылка на deploy Бэкэнда
