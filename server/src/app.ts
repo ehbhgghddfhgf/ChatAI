@@ -9,11 +9,13 @@ import { router as chatRouter } from "./routes/chat.routes.js";
 export function createApp() {
   const app = express();
 
+  const domains = [
+    'http://localhost:5173',
+    process.env.CLIENT_URL as string
+  ].filter(Boolean)
+
   app.use(cors({
-    origin: [
-      'http://localhost:5173',
-      process.env.CLIENT_URL
-    ].filter(Boolean)
+    origin: domains
   }));
   app.use(express.json({ limit: "1mb" }));
 
